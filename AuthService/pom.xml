@@ -1,0 +1,126 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.nnh</groupId>
+  <artifactId>AuthService</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <properties>
+	  <java.version>11</java.version>
+	  <spring.boot.version>2.6.3</spring.boot.version>
+	  <spring.cloud.version>2021.0.3</spring.cloud.version>
+	  <postgresql.version>42.6.0</postgresql.version>
+	  <axon.framework.version>4.5.9</axon.framework.version>
+	  <curator.version>5.0.0</curator.version>
+	  <json.web.token.version>0.11.5</json.web.token.version>
+  </properties>
+  
+  <dependencies>
+	  <!-- spring boot-->
+	  <dependency>
+		  <groupId>org.springframework.boot</groupId>
+		  <artifactId>spring-boot-starter-web</artifactId>
+	  </dependency>
+	  <dependency>
+		  <groupId>org.springframework.boot</groupId>
+		  <artifactId>spring-boot-starter-webflux</artifactId>
+	  </dependency>
+	  <dependency>
+		  <groupId>org.springframework.boot</groupId>
+		  <artifactId>spring-boot-devtools</artifactId>
+	  </dependency>
+	  <dependency>
+		  <groupId>org.springframework.boot</groupId>
+		  <artifactId>spring-boot-starter-data-jpa</artifactId>
+	  </dependency>
+	  <dependency>
+		  <groupId>org.springframework.boot</groupId>
+		  <artifactId>spring-boot-starter-test</artifactId>
+	  </dependency>
+	  <dependency>
+		  <groupId>org.springframework.boot</groupId>
+		  <artifactId>spring-boot-starter-actuator</artifactId>
+	  </dependency>
+	  
+	  <!-- spring cloud-->
+	  <dependency>
+		  <groupId>org.springframework.boot</groupId>
+		  <artifactId>spring-boot-starter-web</artifactId>
+	  </dependency>
+	  
+	  <!-- data-->
+	  <dependency>
+		  <groupId>org.postgresql</groupId>
+		  <artifactId>postgresql</artifactId>
+		  <version>${postgresql.version}</version>
+	  </dependency>
+	  
+	  <!-- axon framework-->
+	  <dependency>
+		  <groupId>org.axonframework</groupId>
+		  <artifactId>axon-spring-boot-starter</artifactId>
+		  <version>${axon.framework.version}</version>
+	  </dependency>
+	  
+	  <!-- kafka-->
+	  <dependency>
+		  <groupId>org.springframework.kafka</groupId>
+		  <artifactId>spring-kafka</artifactId>
+	  </dependency>
+	  <dependency>
+		  <groupId>org.springframework.kafka</groupId>
+		  <artifactId>spring-kafka-test</artifactId>
+	  </dependency>
+	  
+	  <!-- zookeeper-->
+	  <dependency>
+	      <groupId>org.apache.curator</groupId>
+	      <artifactId>curator-framework</artifactId>
+	      <version>${curator.version}</version>
+	  </dependency>
+  
+  	  <!-- jwt-->
+	  <dependency>
+		  <groupId>io.jsonwebtoken</groupId>
+		  <artifactId>jjwt-api</artifactId>
+		  <version>${json.web.token.version}</version>
+	  </dependency>
+	  <dependency>
+		  <groupId>io.jsonwebtoken</groupId>
+		  <artifactId>jjwt-impl</artifactId>
+		  <version>${json.web.token.version}</version>
+	  </dependency>
+	  <dependency>
+		  <groupId>io.jsonwebtoken</groupId>
+		  <artifactId>jjwt-jackson</artifactId>
+		  <version>${json.web.token.version}</version>
+	  </dependency>
+  </dependencies>
+  
+  <dependencyManagement>
+	  <dependencies>
+		  <dependency>
+			  <groupId>org.springframework.boot</groupId>
+			  <artifactId>spring-boot-dependencies</artifactId>
+			  <version>${spring.boot.version}</version>
+			  <scope>import</scope>
+			  <type>pom</type>
+		  </dependency>
+		  <dependency>
+			  <groupId>org.springframework.cloud</groupId>
+			  <artifactId>spring-cloud-dependencies</artifactId>
+			  <version>${spring.cloud.version}</version>
+			  <scope>import</scope>
+			  <type>pom</type>
+		  </dependency>
+	  </dependencies>
+  </dependencyManagement>
+  
+  <build>
+	  <plugins>
+		  <plugin>
+			  <groupId>org.springframework.boot</groupId>
+			  <artifactId>spring-boot-maven-plugin</artifactId>
+		  </plugin>
+	  </plugins>
+  </build>
+</project>
