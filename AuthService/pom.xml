@@ -8,7 +8,7 @@
 	  <java.version>11</java.version>
 	  <spring.boot.version>2.6.3</spring.boot.version>
 	  <spring.cloud.version>2021.0.3</spring.cloud.version>
-	  <postgresql.version>42.6.0</postgresql.version>
+	  <h2.version>2.2.224</h2.version>
 	  <axon.framework.version>4.5.9</axon.framework.version>
 	  <curator.version>5.0.0</curator.version>
 	  <json.web.token.version>0.11.5</json.web.token.version>
@@ -48,17 +48,11 @@
 		  <artifactId>spring-boot-starter-actuator</artifactId>
 	  </dependency>
 	  
-	  <!-- spring cloud-->
-	  <dependency>
-		  <groupId>org.springframework.boot</groupId>
-		  <artifactId>spring-boot-starter-web</artifactId>
-	  </dependency>
-	  
 	  <!-- data-->
 	  <dependency>
-		  <groupId>org.postgresql</groupId>
-		  <artifactId>postgresql</artifactId>
-		  <version>${postgresql.version}</version>
+		  <groupId>com.h2database</groupId>
+		  <artifactId>h2</artifactId>
+		  <version>${h2.version}</version>
 	  </dependency>
 	  
 	  <!-- axon framework-->
