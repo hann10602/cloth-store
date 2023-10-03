@@ -5,12 +5,15 @@ spring:
   application:
     name: user-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/user-db
-    name: postgres
-    password: mny10602
+    url: jdbc:mysql://localhost:3306/user-db
+    name: root
+    password: 123456
   jpa:
     hibernate:
       ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL55Dialect
     show-sql: true
   cloud:
     zookeeper:

@@ -1,26 +1,41 @@
-package com.nnh.command.model.dto;
+package com.nnh.command.event;
 
-import java.util.Date;
+import com.nnh.command.model.entity.RoleEntity;
 
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-
-public class UserDTO {
+public class UserUpdatedEvent {
 	private Long id;
 	private String fullName;
 	private String username;
 	private String password;
+	private RoleEntity role;
+	private Integer age;
 	private String email;
 	private Long phoneNum;
 	private boolean isActive;
 	
+	public UserUpdatedEvent(Long id, String fullName, String username, String password, RoleEntity role, String email,
+			Long phoneNum, boolean isActive) {
+		super();
+		this.id = id;
+		this.fullName = fullName;
+		this.username = username;
+		this.password = password;
+		this.role = role;
+		this.email = email;
+		this.phoneNum = phoneNum;
+		this.isActive = isActive;
+	}
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public Integer getAge() {
+		return age;
+	}
+	public void setAge(Integer age) {
+		this.age = age;
 	}
 	public String getFullName() {
 		return fullName;
@@ -40,6 +55,14 @@ public class UserDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public RoleEntity getRole() {
+		return role;
+	}
+
+	public void setRole(RoleEntity role) {
+		this.role = role;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -58,6 +81,4 @@ public class UserDTO {
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
-	
-	
 }

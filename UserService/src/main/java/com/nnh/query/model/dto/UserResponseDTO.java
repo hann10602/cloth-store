@@ -1,26 +1,9 @@
-package com.nnh.command.model.entity;
+package com.nnh.query.model.dto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-@Entity
-@Table(name = "user")
-public class UserEntity implements UserDetails{
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserResponseDTO {
 	private Long id;
 	private String fullName;
 	private String username;
@@ -29,18 +12,15 @@ public class UserEntity implements UserDetails{
 	private String email;
 	private Long phoneNum;
 	private boolean isActive;
+	private String role;
+	private String sortBy;
+	private Integer fPage;
+	private Integer lPage;
+	private Integer tPage;
+	private List<UserResponseDTO> userList;
 	
-	@ManyToMany
-	@JoinTable(name = "user_role",
-	joinColumns = @JoinColumn(name = "user_id"),
-	inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private List<RoleEntity> roles = new ArrayList<>();
 	
-	public UserEntity() {
-		super();
-	}
-
-	public UserEntity(Builder builder) {
+	public UserResponseDTO(Builder builder) {
 		this.id = builder.id;
 		this.fullName = builder.fullName;
 		this.username = builder.username;
@@ -49,37 +29,24 @@ public class UserEntity implements UserDetails{
 		this.age = builder.age;
 		this.phoneNum = builder.phoneNum;
 		this.isActive = builder.isActive;
-		this.roles = builder.roles;
+		this.role = builder.role;
+		this.sortBy = builder.sortBy;
+		this.fPage = builder.fPage;
+		this.lPage = builder.lPage;
+		this.tPage = builder.tPage;
+		this.userList = builder.userList;
 	}
-
-	public List<GrantedAuthority> convertRoles(List<RoleEntity> originRoles) {
-		List<GrantedAuthority> convertRoles = new ArrayList<>();
-		for(RoleEntity role : originRoles) {
-			convertRoles.add(new SimpleGrantedAuthority(role.getCode()));
-		}
-		
-		return convertRoles;
-	}
-	
-	public List<GrantedAuthority> getAuthorities() {
-		List<GrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-		return authorities;
-	}
-	
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public List<RoleEntity> getRoles() {
-		return roles;
+	public Integer getAge() {
+		return age;
 	}
-	public void setRoles(List<RoleEntity> roles) {
-		this.roles = roles;
+	public void setAge(Integer age) {
+		this.age = age;
 	}
 	public String getFullName() {
 		return fullName;
@@ -99,14 +66,6 @@ public class UserEntity implements UserDetails{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Integer getAge() {
-		return age;
-	}
-
-	public void setAge(Integer age) {
-		this.age = age;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -125,33 +84,46 @@ public class UserEntity implements UserDetails{
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public String getSortBy() {
+		return sortBy;
+	}
+	public void setSortBy(String sortBy) {
+		this.sortBy = sortBy;
+	}
+	public Integer getfPage() {
+		return fPage;
+	}
+	public void setfPage(Integer fPage) {
+		this.fPage = fPage;
+	}
+	public Integer getlPage() {
+		return lPage;
+	}
+	public void setlPage(Integer lPage) {
+		this.lPage = lPage;
+	}
+	public Integer gettPage() {
+		return tPage;
+	}
+	public void settPage(Integer tPage) {
+		this.tPage = tPage;
+	}
+	public List<UserResponseDTO> getUserList() {
+		return userList;
+	}
+	public void setUserList(List<UserResponseDTO> userList) {
+		this.userList = userList;
 	}
 
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return true;
-	}
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return isActive;
-	}
-	
 	public static class Builder {
-		private Long id = null;
+		private Long id;
 		private String fullName;
 		private String username;
 		private String password;
@@ -159,7 +131,12 @@ public class UserEntity implements UserDetails{
 		private String email;
 		private Long phoneNum;
 		private boolean isActive;
-		private List<RoleEntity> roles = new ArrayList<>();
+		private String role;
+		private String sortBy = null;
+		private Integer fPage = null;
+		private Integer lPage = null;
+		private Integer tPage = null;
+		private List<UserResponseDTO> userList = new ArrayList<>();
 		
 		public Builder id(Long id) {
 			this.id = id;
@@ -201,13 +178,38 @@ public class UserEntity implements UserDetails{
 			return this;
 		}
 		
-		public Builder roles(List<RoleEntity> roles) {
-			this.roles = roles;
+		public Builder role(String role) {
+			this.role = role;
 			return this;
 		}
 		
-		public UserEntity build() {
-			return new UserEntity(this);
+		public Builder sortBy(String sortBy) {
+			this.sortBy = sortBy;
+			return this;
+		}
+		
+		public Builder fPage(Integer fPage) {
+			this.fPage = fPage;
+			return this;
+		}
+		
+		public Builder lPage(Integer lPage) {
+			this.lPage = lPage;
+			return this;
+		}
+		
+		public Builder tPage(Integer tPage) {
+			this.tPage = tPage;
+			return this;
+		}
+		
+		public Builder userList(List<UserResponseDTO> userList) {
+			this.userList = userList;
+			return this;
+		}
+		
+		public UserResponseDTO build() {
+			return new UserResponseDTO(this);
 		}
 	}
 }

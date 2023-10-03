@@ -1,13 +1,6 @@
 package com.nnh.command.model.dto;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.ManyToMany;
-
-import com.nnh.command.model.entity.UserEntity;
-
-public class RoleDTO {
+public class RoleRequestDTO {
 	private Long id;
 	private String name;
 	private String code;
