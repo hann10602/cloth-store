@@ -2,8 +2,6 @@ package com.nnh.command.command;
 
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
-import com.nnh.command.model.entity.RoleEntity;
-
 public class UpdateUserCommand {
 	@TargetAggregateIdentifier
 	private Long id;
@@ -11,7 +9,7 @@ public class UpdateUserCommand {
 	private String username;
 	private String password;
 	private Integer age;
-	private RoleEntity role;
+	private String role;
 	private String email;
 	private Long phoneNum;
 	private boolean isActive;
@@ -59,11 +57,11 @@ public class UpdateUserCommand {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public RoleEntity getRole() {
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(RoleEntity role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 
@@ -95,7 +93,7 @@ public class UpdateUserCommand {
 		private String email;
 		private Long phoneNum;
 		private boolean isActive;
-		private RoleEntity role;
+		private String role;
 		
 		public Builder id(Long id) {
 			this.id = id;
@@ -137,7 +135,7 @@ public class UpdateUserCommand {
 			return this;
 		}
 		
-		public Builder roles(RoleEntity role) {
+		public Builder roles(String role) {
 			this.role = role;
 			return this;
 		}

@@ -8,19 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nnh.command.command.CreateUserCommand;
-import com.nnh.command.data.repository.RoleRepository;
 import com.nnh.command.model.dto.UserRequestDTO;
 
 @RestController
 @RequestMapping("/api/v1/user/command")
 public class UserCommandController {
-	private final RoleRepository roleRep;
 	private final CommandGateway commandGateway;
 	
 	@Autowired
-	public UserCommandController(RoleRepository roleRep, CommandGateway commandGateway) {
+	public UserCommandController(CommandGateway commandGateway) {
 		super();
-		this.roleRep = roleRep;
 		this.commandGateway = commandGateway;
 	}
 	
@@ -35,7 +32,7 @@ public class UserCommandController {
 					.phoneNum(dto.getPhoneNum())
 					.email(dto.getEmail())
 					.isActive(dto.isActive())
-					.roles(roleRep.findOneByCode(dto.getRole()))
+					.role(dto.getRole())
 					.build();
 			
 			commandGateway.sendAndWait(command);

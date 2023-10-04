@@ -1,7 +1,6 @@
 package com.nnh.command.model.dto;
 
 public class UserRequestDTO {
-	private Long id;
 	private String fullName;
 	private String username;
 	private String password;
@@ -11,12 +10,6 @@ public class UserRequestDTO {
 	private boolean isActive;
 	private String role;
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public Integer getAge() {
 		return age;
 	}

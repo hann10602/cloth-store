@@ -1,18 +1,16 @@
 package com.nnh.command.event;
 
-import com.nnh.command.model.entity.RoleEntity;
-
 public class UserCreatedEvent {
 	private String fullName;
 	private String username;
 	private String password;
 	private Integer age;
-	private RoleEntity role;
+	private String role;
 	private String email;
 	private Long phoneNum;
 	private boolean isActive;
 	
-	public UserCreatedEvent(String fullName, String username, String password, RoleEntity role, String email,
+	public UserCreatedEvent(String fullName, String username, String password, String role, String email,
 			Long phoneNum, boolean isActive) {
 		super();
 		this.fullName = fullName;
@@ -47,11 +45,11 @@ public class UserCreatedEvent {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public RoleEntity getRole() {
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(RoleEntity role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 

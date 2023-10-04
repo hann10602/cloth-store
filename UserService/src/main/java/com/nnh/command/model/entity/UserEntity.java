@@ -7,9 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -29,12 +26,7 @@ public class UserEntity implements UserDetails{
 	private String email;
 	private Long phoneNum;
 	private boolean isActive;
-	
-	@ManyToMany
-	@JoinTable(name = "user_role",
-	joinColumns = @JoinColumn(name = "user_id"),
-	inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private List<RoleEntity> roles = new ArrayList<>();
+	private String role;
 	
 	public UserEntity() {
 		super();
@@ -49,14 +41,12 @@ public class UserEntity implements UserDetails{
 		this.age = builder.age;
 		this.phoneNum = builder.phoneNum;
 		this.isActive = builder.isActive;
-		this.roles = builder.roles;
+		this.role = builder.role;
 	}
 
-	public List<GrantedAuthority> convertRoles(List<RoleEntity> originRoles) {
+	public List<GrantedAuthority> convertRoles(String originRole) {
 		List<GrantedAuthority> convertRoles = new ArrayList<>();
-		for(RoleEntity role : originRoles) {
-			convertRoles.add(new SimpleGrantedAuthority(role.getCode()));
-		}
+		convertRoles.add(new SimpleGrantedAuthority(originRole));
 		
 		return convertRoles;
 	}
@@ -75,11 +65,11 @@ public class UserEntity implements UserDetails{
 		this.id = id;
 	}
 
-	public List<RoleEntity> getRoles() {
-		return roles;
+	public String getRole() {
+		return role;
 	}
-	public void setRoles(List<RoleEntity> roles) {
-		this.roles = roles;
+	public void setRole(String role) {
+		this.role = role;
 	}
 	public String getFullName() {
 		return fullName;
@@ -159,7 +149,7 @@ public class UserEntity implements UserDetails{
 		private String email;
 		private Long phoneNum;
 		private boolean isActive;
-		private List<RoleEntity> roles = new ArrayList<>();
+		private String role;
 		
 		public Builder id(Long id) {
 			this.id = id;
@@ -201,8 +191,8 @@ public class UserEntity implements UserDetails{
 			return this;
 		}
 		
-		public Builder roles(List<RoleEntity> roles) {
-			this.roles = roles;
+		public Builder role(String role) {
+			this.role = role;
 			return this;
 		}
 		

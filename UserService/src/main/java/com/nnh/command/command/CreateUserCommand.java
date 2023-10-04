@@ -2,14 +2,12 @@ package com.nnh.command.command;
 
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
-import com.nnh.command.model.entity.RoleEntity;
-
 public class CreateUserCommand {
 	@TargetAggregateIdentifier
 	private String fullName;
 	private String username;
 	private String password;
-	private RoleEntity role;
+	private String role;
 	private Integer age;
 	private String email;
 	private Long phoneNum;
@@ -50,11 +48,11 @@ public class CreateUserCommand {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public RoleEntity getRole() {
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(RoleEntity role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 
@@ -85,7 +83,7 @@ public class CreateUserCommand {
 		private String email;
 		private Long phoneNum;
 		private boolean isActive;
-		private RoleEntity role;
+		private String role;
 		
 		public Builder fullName(String fullName) {
 			this.fullName = fullName;
@@ -122,7 +120,7 @@ public class CreateUserCommand {
 			return this;
 		}
 		
-		public Builder roles(RoleEntity role) {
+		public Builder role(String role) {
 			this.role = role;
 			return this;
 		}

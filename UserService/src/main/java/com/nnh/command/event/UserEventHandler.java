@@ -1,14 +1,10 @@
 package com.nnh.command.event;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.nnh.command.data.repository.UserRepository;
-import com.nnh.command.model.entity.RoleEntity;
 import com.nnh.command.model.entity.UserEntity;
 
 @Component
@@ -23,9 +19,6 @@ public class UserEventHandler {
 	
 	@EventHandler
 	public void createUser(UserCreatedEvent event) {
-		List<RoleEntity> roles = new ArrayList<>();
-		roles.add(event.getRole());
-		
 		UserEntity user = new UserEntity.Builder()
 				.fullName(event.getFullName())
 				.userame(event.getUsername())
@@ -34,7 +27,7 @@ public class UserEventHandler {
 				.phoneNum(event.getPhoneNum())
 				.email(event.getEmail())
 				.isActive(event.isActive())
-				.roles(roles)
+				.role(event.getRole())
 				.build();
 		
 		userRep.save(user);
@@ -42,8 +35,6 @@ public class UserEventHandler {
 	
 	@EventHandler
 	public void updateUser(UserUpdatedEvent event) {
-		List<RoleEntity> roles = new ArrayList<>();
-		roles.add(event.getRole());
 		
 		UserEntity user = new UserEntity.Builder()
 				.id(event.getId())
@@ -54,7 +45,7 @@ public class UserEventHandler {
 				.phoneNum(event.getPhoneNum())
 				.email(event.getEmail())
 				.isActive(event.isActive())
-				.roles(roles)
+				.role(event.getRole())
 				.build();;
 		
 		userRep.save(user);

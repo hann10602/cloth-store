@@ -9,7 +9,6 @@
 	  <spring.boot.version>2.6.3</spring.boot.version>
 	  <spring.cloud.version>2021.0.3</spring.cloud.version>
 	  <h2.version>2.2.224</h2.version>
-	  <axon.framework.version>4.5.9</axon.framework.version>
 	  <curator.version>5.0.0</curator.version>
 	  <json.web.token.version>0.11.5</json.web.token.version>
   </properties>
@@ -48,18 +47,17 @@
 		  <artifactId>spring-boot-starter-actuator</artifactId>
 	  </dependency>
 	  
-	  <!-- data-->
+	  <!-- data
 	  <dependency>
 		  <groupId>com.h2database</groupId>
 		  <artifactId>h2</artifactId>
 		  <version>${h2.version}</version>
-	  </dependency>
+	  </dependency>-->
 	  
-	  <!-- axon framework-->
 	  <dependency>
-		  <groupId>org.axonframework</groupId>
-		  <artifactId>axon-spring-boot-starter</artifactId>
-		  <version>${axon.framework.version}</version>
+		  <groupId>mysql</groupId>
+		  <artifactId>mysql-connector-java</artifactId>
+		  <version>8.0.33</version>
 	  </dependency>
 	  
 	  <!-- kafka-->

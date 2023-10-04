@@ -12,7 +12,6 @@ import com.nnh.command.command.UpdateUserCommand;
 import com.nnh.command.event.UserCreatedEvent;
 import com.nnh.command.event.UserDeletedEvent;
 import com.nnh.command.event.UserUpdatedEvent;
-import com.nnh.command.model.entity.RoleEntity;
 
 @Aggregate
 public class UserAggregate {
@@ -21,7 +20,7 @@ public class UserAggregate {
 	private String fullName;
 	private String username;
 	private String password;
-	private RoleEntity role;
+	private String role;
 	private String email;
 	private Long phoneNum;
 	private boolean isActive;
@@ -99,11 +98,11 @@ public class UserAggregate {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public RoleEntity getRole() {
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(RoleEntity role) {
+	public void setRole(String role) {
 		this.role = role;
 	}
 

@@ -36,7 +36,7 @@ public class UserProjection {
 				.phoneNum(entity.getPhoneNum())
 				.email(entity.getEmail())
 				.isActive(entity.isActive())
-				.role(entity.getRoles().get(0).getName())
+				.role(entity.getRole())
 				.build();
 		
 		return dto;
@@ -58,7 +58,7 @@ public class UserProjection {
 				.phoneNum(entity.getPhoneNum())
 				.email(entity.getEmail())
 				.isActive(entity.isActive())
-				.role(entity.getRoles().get(0).getName())
+				.role(entity.getRole())
 				.build());
 		}
 		
@@ -80,7 +80,7 @@ public class UserProjection {
 				.phoneNum(entity.getPhoneNum())
 				.email(entity.getEmail())
 				.isActive(entity.isActive())
-				.role(entity.getRoles().get(0).getName())
+				.role(entity.getRole())
 				.build());
 		}
 		
